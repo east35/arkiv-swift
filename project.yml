@@ -34,6 +34,8 @@ packages:
     path: Packages/DesignSystem
   Games:
     path: Packages/Features/Games
+  Auth:
+    path: Packages/Features/Auth
 
 targets:
   arkivApp:
@@ -66,3 +68,5 @@ targets:
         product: DesignSystem
       - package: Games
         product: Games
+      - package: Auth
+        product: AuthFeature

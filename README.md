@@ -13,10 +13,11 @@ arkiv-swift/
   project.yml                 # XcodeGen spec — SOURCE OF TRUTH for the Xcode project
   arkivApp/                   # Thin Xcode app target (@main, assets, Info.plist, entitlements)
   Packages/
-    Core/                     # Supabase client, models, networking, utilities
-    DesignSystem/             # Design tokens (colors, spacing, typography, sizes)
+    Core/                     # Supabase client, auth repository, session store, models
+    DesignSystem/             # Design tokens + shared primitives (buttons, loading, errors)
     Features/
-      Games/                  # First vertical slice feature module
+      Auth/                   # Sign-in / sign-up / forgot-password flow
+      Games/                  # First vertical slice feature module (Phase 2 target)
   .github/workflows/ci.yml    # xcodegen generate && xcodebuild build test
   BACKEND_CONTRACT.md         # Supabase tables + edge functions consumed by this client
 ```
@@ -74,4 +75,6 @@ Supabase URL and anon key are read from `arkivApp/Config.xcconfig` (committed wi
 
 ## Status
 
-**Phase 0 — Foundation.** Empty shell, tokens ported, CI green. No auth or data yet. See the migration plan for phase sequence.
+**Phase 1 — Shell & auth.** Supabase auth (sign in / sign up / forgot password), session hydration, adaptive shell (tabs on iPhone, split view on iPad / Mac). Games is the only nav destination wired to a real view; rest are placeholders. Settings exposes sign-out for loop verification.
+
+Next up — **Phase 2: games vertical slice** (library list, item detail, status mutation, IGDB add-to-library).

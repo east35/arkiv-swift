@@ -10,9 +10,15 @@ let package = Package(
     products: [
         .library(name: "Core", targets: ["Core"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/supabase/supabase-swift", from: "2.20.0")
+    ],
     targets: [
         .target(
             name: "Core",
+            dependencies: [
+                .product(name: "Supabase", package: "supabase-swift")
+            ],
             path: "Sources/Core"
         ),
         .testTarget(
