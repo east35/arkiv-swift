@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Xcode — generated project (XcodeGen is the source of truth)
+*.xcodeproj/
+*.xcworkspace/
+!default.xcworkspace/
+
+# Xcode build artifacts
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Secrets — real config is never committed
+ArkivApp/Secrets.xcconfig
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Fastlane / misc
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output

@@ -1,0 +1,8 @@
+// Arkiv app configuration.
+// Real values go in Secrets.xcconfig (gitignored) or are injected by CI.
+// This file is safe to commit — it contains placeholders only.
+
+SUPABASE_URL = https:/$()/your-project.supabase.co
+SUPABASE_ANON_KEY = your-anon-key
+
+#include? "Secrets.xcconfig"
