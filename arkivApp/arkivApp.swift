@@ -17,20 +17,20 @@ struct arkivApp: App { // swiftlint:disable:this type_name — brand is lowercas
 struct RootView: View {
     var body: some View {
         // Phase 0 placeholder. Phase 1 replaces this with the auth gate + app shell.
-        VStack(spacing: ArkivSpacing.px16) {
+        VStack(spacing: Tokens.Spacing.px16) {
             Text("arkiv")
-                .font(ArkivTypography.heading1)
-                .foregroundStyle(ArkivColor.textPrimary)
+                .font(Tokens.Typography.heading1)
+                .foregroundStyle(Tokens.Color.textPrimary)
 
             Text("Phase 0 foundation")
-                .font(ArkivTypography.bodyPrimary)
-                .foregroundStyle(ArkivColor.textSecondary)
+                .font(Tokens.Typography.bodyPrimary)
+                .foregroundStyle(Tokens.Color.textSecondary)
 
             GamesPlaceholderView()
         }
-        .padding(ArkivSpacing.px24)
+        .padding(Tokens.Spacing.px24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(ArkivColor.surfacePrimary)
+        .background(Tokens.Color.surfacePrimary)
     }
 }
 

@@ -6,17 +6,17 @@ public struct GamesPlaceholderView: View {
     public init() {}
 
     public var body: some View {
-        VStack(spacing: ArkivSpacing.px8) {
+        VStack(spacing: Tokens.Spacing.px8) {
             Text("Games")
-                .font(ArkivTypography.heading3)
-                .foregroundStyle(ArkivColor.textPrimary)
+                .font(Tokens.Typography.heading3)
+                .foregroundStyle(Tokens.Color.textPrimary)
             Text("Library list coming in Phase 2.")
-                .font(ArkivTypography.bodySecondary)
-                .foregroundStyle(ArkivColor.textSecondary)
+                .font(Tokens.Typography.bodySecondary)
+                .foregroundStyle(Tokens.Color.textSecondary)
         }
-        .padding(ArkivSpacing.px16)
+        .padding(Tokens.Spacing.px16)
         .frame(maxWidth: .infinity)
-        .background(ArkivColor.surfaceTertiary)
+        .background(Tokens.Color.surfaceTertiary)
     }
 }
 
