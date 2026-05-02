@@ -1,4 +1,4 @@
-name: ArkivApp
+name: arkivApp
 options:
   bundleIdPrefix: com.arkiv
   createIntermediateGroups: true
@@ -7,6 +7,9 @@ options:
     macOS: "14.0"
   groupSortPosition: top
   xcodeVersion: "15.3"
+  # Pin the project format so projects generated on a machine with Xcode 26+
+  # remain readable by CI runners / teammates on older Xcodes.
+  compatibilityVersion: "Xcode 14.0"
 
 settings:
   base:
@@ -33,29 +36,29 @@ packages:
     path: Packages/Features/Games
 
 targets:
-  ArkivApp:
+  arkivApp:
     type: application
     supportedDestinations: [iOS, macOS]
     sources:
-      - path: ArkivApp
+      - path: arkivApp
         excludes:
           - "**/*.xcconfig"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.arkiv.app
-        PRODUCT_NAME: Arkiv
+        PRODUCT_NAME: arkiv
         MARKETING_VERSION: "0.1.0"
         CURRENT_PROJECT_VERSION: "1"
-        INFOPLIST_FILE: ArkivApp/Info.plist
-        CODE_SIGN_ENTITLEMENTS: ArkivApp/ArkivApp.entitlements
+        INFOPLIST_FILE: arkivApp/Info.plist
+        CODE_SIGN_ENTITLEMENTS: arkivApp/arkivApp.entitlements
         TARGETED_DEVICE_FAMILY: "1,2"
         ENABLE_PREVIEWS: YES
         SWIFT_EMIT_LOC_STRINGS: YES
       configs:
         Debug:
-          xcconfig: ArkivApp/Config.xcconfig
+          xcconfig: arkivApp/Config.xcconfig
         Release:
-          xcconfig: ArkivApp/Config.xcconfig
+          xcconfig: arkivApp/Config.xcconfig
     dependencies:
       - package: Core
         product: Core

@@ -3,7 +3,7 @@ import DesignSystem
 import Games
 
 @main
-struct ArkivApp: App {
+struct arkivApp: App { // swiftlint:disable:this type_name — brand is lowercase.
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -18,7 +18,7 @@ struct RootView: View {
     var body: some View {
         // Phase 0 placeholder. Phase 1 replaces this with the auth gate + app shell.
         VStack(spacing: ArkivSpacing.px16) {
-            Text("Arkiv")
+            Text("arkiv")
                 .font(ArkivTypography.heading1)
                 .foregroundStyle(ArkivColor.textPrimary)
 

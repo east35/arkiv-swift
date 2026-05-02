@@ -13,12 +13,12 @@ concurrency:
 jobs:
   package-tests:
     name: SwiftPM Tests
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Test Core package
         run: swift test --package-path Packages/Core
@@ -28,12 +28,12 @@ jobs:
 
   build-ios:
     name: Build (iOS Simulator)
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -45,27 +45,21 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild \
-            -project ArkivApp.xcodeproj \
-            -scheme ArkivApp \
+            -project arkivApp.xcodeproj \
+            -scheme arkivApp \
             -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
-            build | xcpretty || xcodebuild \
-              -project ArkivApp.xcodeproj \
-              -scheme ArkivApp \
-              -destination 'generic/platform=iOS Simulator' \
-              -configuration Debug \
-              CODE_SIGNING_ALLOWED=NO \
-              build
+            build
 
   build-macos:
     name: Build (macOS)
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      - name: Show Xcode version
+        run: xcodebuild -version
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -77,15 +71,9 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild \
-            -project ArkivApp.xcodeproj \
-            -scheme ArkivApp \
+            -project arkivApp.xcodeproj \
+            -scheme arkivApp \
             -destination 'generic/platform=macOS' \
             -configuration Debug \
             CODE_SIGNING_ALLOWED=NO \
-            build | xcpretty || xcodebuild \
-              -project ArkivApp.xcodeproj \
-              -scheme ArkivApp \
-              -destination 'generic/platform=macOS' \
-              -configuration Debug \
-              CODE_SIGNING_ALLOWED=NO \
-              build
+            build

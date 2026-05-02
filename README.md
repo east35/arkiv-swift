@@ -1,6 +1,8 @@
-# Arkiv (SwiftUI)
+# arkiv (SwiftUI)
 
-Universal SwiftUI client for Arkiv — personal game / book / film / TV tracker. Targets iOS 17, iPadOS 17, and macOS 14 from a single codebase. Backend is the same Supabase project used by the web app (`arkiv` repo).
+Universal SwiftUI client for arkiv — personal game / book / film / TV tracker. Targets iOS 17, iPadOS 17, and macOS 14 from a single codebase. Backend is the same Supabase project used by the web app (`arkiv` repo).
+
+> **Brand note:** "arkiv" is always lowercase. Never write "Arkiv".
 
 See `/Users/jimjordan/.windsurf/plans/arkiv-swiftui-migration-f39581.md` for the migration plan.
 
@@ -9,7 +11,7 @@ See `/Users/jimjordan/.windsurf/plans/arkiv-swiftui-migration-f39581.md` for the
 ```
 arkiv-swift/
   project.yml                 # XcodeGen spec — SOURCE OF TRUTH for the Xcode project
-  ArkivApp/                   # Thin Xcode app target (@main, assets, Info.plist, entitlements)
+  arkivApp/                   # Thin Xcode app target (@main, assets, Info.plist, entitlements)
   Packages/
     Core/                     # Supabase client, models, networking, utilities
     DesignSystem/             # Design tokens (colors, spacing, typography, sizes)
@@ -23,7 +25,7 @@ arkiv-swift/
 
 This project uses **XcodeGen + local Swift Package Manager packages** specifically so agents can work without touching `project.pbxproj`. Three rules:
 
-1. **Never hand-edit `Arkiv.xcodeproj/project.pbxproj`.** It is generated. Edit `project.yml` and run `xcodegen generate`.
+1. **Never hand-edit `arkivApp.xcodeproj/project.pbxproj`.** It is generated. Edit `project.yml` and run `xcodegen generate`.
 2. **Adding a Swift file = drop it in a package's `Sources/<ModuleName>/` folder.** SwiftPM auto-discovers sources; no project-file edits needed.
 3. **Adding a new SPM package or wiring it to the app requires editing `project.yml` and the package's `Package.swift`**, then `xcodegen generate`.
 
@@ -37,7 +39,7 @@ This project uses **XcodeGen + local Swift Package Manager packages** specifical
 ```sh
 brew install xcodegen
 xcodegen generate
-open ArkivApp.xcodeproj
+open arkivApp.xcodeproj
 ```
 
 ## Building & Testing from CLI
@@ -47,11 +49,11 @@ open ArkivApp.xcodeproj
 xcodegen generate
 
 # Build for iOS simulator
-xcodebuild -project ArkivApp.xcodeproj -scheme ArkivApp \
+xcodebuild -project arkivApp.xcodeproj -scheme arkivApp \
   -destination 'generic/platform=iOS Simulator' build
 
 # Build for macOS
-xcodebuild -project ArkivApp.xcodeproj -scheme ArkivApp \
+xcodebuild -project arkivApp.xcodeproj -scheme arkivApp \
   -destination 'generic/platform=macOS' build
 
 # Run package unit tests (no simulator needed)
@@ -61,7 +63,7 @@ swift test --package-path Packages/DesignSystem
 
 ## Configuration
 
-Supabase URL and anon key are read from `ArkivApp/Config.xcconfig` (committed with placeholders) and optionally `ArkivApp/Secrets.xcconfig` (gitignored, for local overrides). No secrets are committed.
+Supabase URL and anon key are read from `arkivApp/Config.xcconfig` (committed with placeholders) and optionally `arkivApp/Secrets.xcconfig` (gitignored, for local overrides). No secrets are committed.
 
 ## Branching
 

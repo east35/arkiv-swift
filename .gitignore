@@ -23,7 +23,7 @@ xcuserdata/
 Package.resolved
 
 # Secrets — real config is never committed
-ArkivApp/Secrets.xcconfig
+arkivApp/Secrets.xcconfig
 
 # Editor
 .vscode/
