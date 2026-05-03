@@ -82,8 +82,12 @@ struct AppShell: View {
     // MARK: - Split layout (iPad / Mac)
 
     private var splitView: some View {
-        NavigationSplitView {
-            List(NavDestination.allCases, selection: $selection) { destination in
+        let optionalSelection = Binding<NavDestination?>(
+            get: { selection },
+            set: { selection = $0 ?? selection }
+        )
+        return NavigationSplitView {
+            List(NavDestination.allCases, selection: optionalSelection) { destination in
                 Label(destination.title, systemImage: destination.systemImage)
                     .tag(destination)
             }

@@ -18,7 +18,13 @@ final class AppDependencies {
         self.config = config
         let supabase = SupabaseClientProvider(config: config)
         self.supabase = supabase
-        let authRepository = SupabaseAuthRepository(client: supabase.client)
+        let captchaProvider: TurnstileTokenProvider? = config.turnstileSiteKey.map { key in
+            TurnstileTokenProvider(
+                siteKey: key,
+                originURL: URL(string: "https://arkiv.dev")!
+            )
+        }
+        let authRepository = SupabaseAuthRepository(client: supabase.client, captchaProvider: captchaProvider)
         self.authRepository = authRepository
         self.sessionStore = SessionStore(repository: authRepository)
     }

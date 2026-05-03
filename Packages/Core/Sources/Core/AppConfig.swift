@@ -7,10 +7,16 @@ import Foundation
 public struct AppConfig: Sendable {
     public let supabaseURL: URL
     public let supabaseAnonKey: String
+    public let turnstileSiteKey: String?
 
-    public init(supabaseURL: URL, supabaseAnonKey: String) {
+    public init(
+        supabaseURL: URL,
+        supabaseAnonKey: String,
+        turnstileSiteKey: String? = nil
+    ) {
         self.supabaseURL = supabaseURL
         self.supabaseAnonKey = supabaseAnonKey
+        self.turnstileSiteKey = turnstileSiteKey
     }
 
     public enum ConfigError: Error, CustomStringConvertible {
@@ -39,6 +45,11 @@ public struct AppConfig: Sendable {
               !key.isEmpty else {
             throw ConfigError.missingKey("SupabaseAnonKey")
         }
-        return AppConfig(supabaseURL: url, supabaseAnonKey: key)
+        let turnstileSiteKey = bundle.object(forInfoDictionaryKey: "TurnstileSiteKey") as? String
+        return AppConfig(
+            supabaseURL: url,
+            supabaseAnonKey: key,
+            turnstileSiteKey: turnstileSiteKey?.isEmpty == false ? turnstileSiteKey : nil
+        )
     }
 }

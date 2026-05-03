@@ -5,9 +5,11 @@ import Auth
 /// Production `AuthRepository` backed by the Supabase Swift SDK.
 public final class SupabaseAuthRepository: AuthRepository {
     private let client: SupabaseClient
+    private let captchaProvider: CaptchaTokenProvider?
 
-    public init(client: SupabaseClient) {
+    public init(client: SupabaseClient, captchaProvider: CaptchaTokenProvider? = nil) {
         self.client = client
+        self.captchaProvider = captchaProvider
     }
 
     public func currentSession() async -> AuthSession? {
@@ -35,7 +37,8 @@ public final class SupabaseAuthRepository: AuthRepository {
 
     public func signIn(email: String, password: String) async throws -> AuthSession {
         do {
-            let session = try await client.auth.signIn(email: email, password: password)
+            let token = try await captchaProvider?.fetchToken()
+            let session = try await client.auth.signIn(email: email, password: password, captchaToken: token)
             return Self.map(session: session)
         } catch {
             throw Self.translate(error)
@@ -44,7 +47,8 @@ public final class SupabaseAuthRepository: AuthRepository {
 
     public func signUp(email: String, password: String) async throws -> AuthSession {
         do {
-            let response = try await client.auth.signUp(email: email, password: password)
+            let token = try await captchaProvider?.fetchToken()
+            let response = try await client.auth.signUp(email: email, password: password, captchaToken: token)
             if let session = response.session {
                 return Self.map(session: session)
             }
