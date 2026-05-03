@@ -26,6 +26,9 @@ jobs:
       - name: Test DesignSystem package
         run: swift test --package-path Packages/DesignSystem
 
+      - name: Test Auth feature package
+        run: swift test --package-path Packages/Features/Auth
+
   build-ios:
     name: Build (iOS Simulator)
     runs-on: macos-15

@@ -34,6 +34,8 @@ packages:
     path: Packages/DesignSystem
   Games:
     path: Packages/Features/Games
+  Auth:
+    path: Packages/Features/Auth
 
 targets:
   arkivApp:
@@ -43,6 +45,9 @@ targets:
       - path: arkivApp
         excludes:
           - "**/*.xcconfig"
+    configFiles:
+      Debug: arkivApp/Config.xcconfig
+      Release: arkivApp/Config.xcconfig
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.arkiv.app
@@ -54,11 +59,6 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         ENABLE_PREVIEWS: YES
         SWIFT_EMIT_LOC_STRINGS: YES
-      configs:
-        Debug:
-          xcconfig: arkivApp/Config.xcconfig
-        Release:
-          xcconfig: arkivApp/Config.xcconfig
     dependencies:
       - package: Core
         product: Core
@@ -66,3 +66,5 @@ targets:
         product: DesignSystem
       - package: Games
         product: Games
+      - package: Auth
+        product: AuthFeature
